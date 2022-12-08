@@ -51,12 +51,11 @@ function App() {
     }
   }, [accounts, contract, web3, admin]);
 
-  //7
+  //7 -ballots ,15- hasVoted
   async function updateBallots() {
     const nextBallotId = parseInt(await contract.methods
       .nextBallotId()
       .call());
-
     const ballots = [];
     for(let i = 0; i < nextBallotId; i++) { 
       const [ballot, hasVoted] = await Promise.all([
@@ -89,7 +88,7 @@ function App() {
       .send({from: accounts[0]});
   };
 
-  //11  
+  //12  
   async function vote(e, ballotId) {
     e.preventDefault();
     const select = e.target.elements[0];
@@ -100,7 +99,7 @@ function App() {
     await updateBallots();
   };
 
-  //13
+  //14
   function isFinished(ballot) {
     const now = (new Date()).getTime();
     const ballotEnd =  (new Date(parseInt(ballot.end) * 1000)).getTime();
@@ -172,6 +171,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
+            {/*9 */}
               {ballots.map(ballot => (
                 <tr key={ballot.id}>
                   <td>{ballot.id}</td>
@@ -189,10 +189,12 @@ function App() {
                   </td>
                   <td>
 
-                  {/*12 */}
+                  {/*13 */}
                     {isFinished(ballot) ? 'Vote finished' : (
                       ballot.hasVoted ? 'You already voted' : ( 
+                        
                       <form onSubmit={e => vote(e, ballot.id)}>
+                      {/*11 */}
                         <div className="form-group">
                           <label htmlFor="choice">Choice</label>
                           <select className="form-control" id="choice">

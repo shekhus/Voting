@@ -16,11 +16,12 @@ save it in a state of react function ==setAdmin(admin);
 without admin selected page can't load 
 && typeof admin !== 'undefined'
 
-6) in HTML shoe createBallot and addVoter only if admin is selected
+6) in HTML, should createBallot and addVoter only if admin is selected
  {accounts[0].toLowerCase() === admin.toLowerCase() ? (
         <> 
 
         </>
+        // conditional rendering 
       ) : null}
 
 7)fetch list of ballots in frontend
@@ -28,20 +29,35 @@ no function to get all ballots but have variable
 nextBallotId with which we can get all ballots Id use for loop for each Id and getBallot from that 
 
 async function updateBallots() {}
-update the useEffect
+ const [ballots, setBallots] = useState([]);
 
-8) (Reusable) create new hook, it changes whenever variable changes
 
-9)make changes for end date of vote 
+8) update the useEffect 
+(Reusable) create new hook, it changes whenever variable changes
+useEffect(() => {
+    if(isReady()) {
+      updateBallots();
+    }
+  }, [accounts, contract, web3, admin]);
+
+createBallot
+    await updateBallots();
+
+9) Update 
+{ballot.choices.map(choice => (
+
+10)make changes for end date of vote 
 {(new Date(parseInt(ballot.end) * 1000)).toLocaleString()}
 
-10)Impliment Voting button, it will have select which will show all the choices for vote = which will trigger the vote function of SC add onSubmit button 
+11)Implement Voting button, it will have select which will show all the choices for vote = which will trigger the vote function of SC add onSubmit button 
+<form onSubmit={e => vote(e, ballot.id)}>
 
-11) prepare function vote 
+12) prepare function vote 
+ await updateBallots();
 
-12) when vote expired, we shoulden't see the button to vote 
+13) when vote expired, we shoulden't see the button to vote 
 Once user has voted, Vote button should  hide
 
-13) We have to take care of hasVoted function in order to create isFinished function
+14) We have to take care of hasVoted function in order to create isFinished function
 
-14) hasVoted property on ballot (we don't get it from SC)
+15) hasVoted property on ballot (we don't get it from SC)
