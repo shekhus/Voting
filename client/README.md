@@ -49,7 +49,7 @@ createBallot
 10)make changes for end date of vote 
 {(new Date(parseInt(ballot.end) * 1000)).toLocaleString()}
 
-11)Impliment Voting button, it will have select which will show all the choices for vote = which will trigger the vote function of SC add onSubmit button 
+11)Implement Voting button, it will have select which will show all the choices for vote = which will trigger the vote function of SC add onSubmit button 
 <form onSubmit={e => vote(e, ballot.id)}>
 
 12) prepare function vote 

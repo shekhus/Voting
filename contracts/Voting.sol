@@ -59,7 +59,6 @@ contract Voting {
     votes[msg.sender][ballotId] = true;
     ballots[ballotId].choices[choiceId].votes++;
   }
-
   //If `pragma experimental ABIEncoderV2`
   function results(uint ballotId) 
     view 

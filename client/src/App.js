@@ -119,6 +119,7 @@ function App() {
         <>
         <div className="row">
           <div className="col-sm-12">
+            {/*1 */}
             <h2>Create ballot</h2>
             <form onSubmit={e => createBallot(e)}>
               <div className="form-group">
@@ -142,6 +143,7 @@ function App() {
 
         <div className="row">
           <div className="col-sm-12">
+            {/*3 */}
             <h2>Add voters</h2>
             <form onSubmit={e => addVoters(e)}>
               <div className="form-group">
